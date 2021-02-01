@@ -45,7 +45,7 @@ proc get(client: BinanceClient, path: string | Uri, query: array, body = ""): Fu
 
   echo "\nHeaders:\n"
   for key, value in response.headers:
-    echo fmt"{key}:  {value}"
+    echo fmt"{key}: {value}"
 
   echo "\nBody:\n"
   let responseBody = await response.body
@@ -59,5 +59,7 @@ proc connect*(client: BinanceClient): Future[string] {.async.} =
   let time = getTime()
   let timestamp = $initDuration(seconds = time.toUnix(), nanoseconds = time.nanosecond()).inMilliseconds
   let query = { "timestamp": $timestamp }
+  #await get(client, "/sapi/v1/capital/config/getall", query)
+  #return await get(client, " /fapi/v1/time ", query)
   return await get(client, "/sapi/v1/capital/config/getall", query)
 

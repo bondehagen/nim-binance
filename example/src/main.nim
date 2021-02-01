@@ -1,4 +1,4 @@
-import asyncdispatch, binance, parsecfg
+import asyncdispatch, nim_binance_api, parsecfg
 
 var config = loadConfig("config.ini")
 let api = config.getSectionValue("","api")
@@ -8,4 +8,6 @@ proc main() {.async.} =
   let c = newBinanceClient(api, secret)
   echo await c.connect()
 
-waitFor main()
+
+when isMainModule:
+  waitFor main()
